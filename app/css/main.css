@@ -1,3 +1,26 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  color--webkit-font-smoothing: antialiased;
+}
+
 body {
-  background: cyan;
+  display: table;
+  width: 100%;
+  background: tomato;
+}
+
+.container {
+  display: table-cell;
+  height: 100%;
+  min-height: 100%;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
 }

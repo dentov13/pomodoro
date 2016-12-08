@@ -5,12 +5,47 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pomodoro Timer by DenTov</title>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+	<div class="container">
+		<!-- Titles -->
+		<h1 class="title">Welcome to Podomoro !</h1>
+		<h2 class="timerTitle" style="display: none"></h2>
+		<!-- Timer settings -->
+		<div class="timeSet">
+			<!-- Break time -->
+			<div class="inputs">
+				<label for="break">Break time</label>
+				<input id="break" type="text" value="5">
+			</div>
+			<!-- Work time -->
+			<div class="inputs">
+				<label for="work">Work time</label>
+				<input id="work" type="text" value="25">
+			</div>
+			<!-- Sessions -->
+			<div class="inputs">
+				<label for="sessions">Sessions</label>
+				<input id="sessions" type="text" value="3">
+			</div>
+			<!-- Start button -->
+			<button id="start" class="btn">
+				<span class="btn-text">Lets Do It !</span>
+			</button>
+		</div>
+		<!-- Counter buttons -->
+		<div class="counterButtons" style="display: none">
+			<button id="setTime" class="btn">Set time</button>
+			<button id="pause" class="btn">Pause timer</button>
+			<button id="startAgain" class="btn">Start timer</button>
+		</div>
+	</div>
 
 	<script src="js/libs.min.js"></script>
-	<script src="js/common.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>
