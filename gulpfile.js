@@ -1,8 +1,7 @@
 var gulp = require('gulp'),
+    babel = require("gulp-babel"),
     sass = require('gulp-sass'),
     browserSync = require('browser-sync'),
-    concat = require('gulp-concat'),
-    uglify = require('gulp-uglifyjs'),
     del = require('del'),
     autoprefixer = require('gulp-autoprefixer');
 
@@ -23,13 +22,10 @@ gulp.task('browser-sync', function() {
 	});
 });
 
-gulp.task('scripts', function () {
-  return gulp.src([
-    'app/libs/jquery/dist/jquery.min.js'
-  ])
-  .pipe(concat('libs.min.js'))
-  .pipe(uglify())
-  .pipe(gulp.dest('app/js'));
+gulp.task("scripts", function () {
+  return gulp.src("app/js/**/*.js")
+    .pipe(babel())
+    .pipe(gulp.dest("app/js"));
 });
 
 gulp.task('clean', function () {
