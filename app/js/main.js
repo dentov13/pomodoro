@@ -3,10 +3,11 @@
 var activeTime, pomodoro;
 var breakTimeSec = 300; // 300 sec = 5 min
 var workTimeSec = 1500; // 1500 sec = 25 min
-var beepAudio = new Audio("http://www.soundjay.com/button/sounds/beep-08b.mp3")
+var beepAudio = new Audio("http://www.soundjay.com/button/sounds/beep-08b.mp3");
+var applauseAudio = new Audio("http://www.soundjay.com/human/sounds/applause-8.mp3");
 
 function beep() {
-	beepAudio.play()
+	beepAudio.play();
 }
 
 function renderTime(time) {
@@ -43,78 +44,63 @@ function clearPomodoro() {
 }
 
 function toggleActive() {
-	toggleStatusIcon(!pomodoro)
+	toggleStatusIcon(!pomodoro);
 
 	if (!pomodoro) {
-		pomodoro = window.setInterval(() => {
-			activeTime--
+		pomodoro = window.setInterval(function () {
+			activeTime--;
 
-			if (activeTime <= 3) beep()
-			if (activeTime < 0) toggleType()
+			if (activeTime === 1 || activeTime === 2 || activeTime === 3) beep();
+			if (activeTime < 0) toggleType();
 
-			renderTime(activeTime)
-		}, 1000)
+			renderTime(activeTime);
+		}, 1000);
 	} else {
-		clearPomodoro()
+		clearPomodoro();
 	}
 }
 
 function resetTimer() {
-	activeTime = workTimeSec
+	activeTime = workTimeSec;
 
-	if (pomodoro) clearPomodoro()
+	if (pomodoro) clearPomodoro();
 
-	if (!working()) toggleType()
-	toggleStatusIcon(false)
-	renderTime(activeTime)
+	if (!working()) toggleType();
+	toggleStatusIcon(false);
+	renderTime(activeTime);
 }
 
 function timeIncDec(click) {
-	if (pomodoro) return
+	if (pomodoro) return;
 
-	var id = click.target.innerHTML
-	var x = click.target.className
+	var id = click.target.innerHTML;
+	var x = click.target.className;
 
 	if (id === '+') {
-		window[x + 'Sec'] += 60
+		window[x + 'Sec'] += 60;
 	} else if (id === '-' && window[x + 'Sec'] > 60) {
-		window[x + 'Sec'] -= 60
+		window[x + 'Sec'] -= 60;
 	} else {
-		return
+		return;
 	}
 
-	window[x].innerHTML = Math.floor(window[x + 'Sec'] / 60)
+	window[x].innerHTML = Math.floor(window[x + 'Sec'] / 60);
 
-	activeTime = workTimeSec
-	renderTime(activeTime)
+	activeTime = workTimeSec;
+	renderTime(activeTime);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-	resetTimer()
-	renderTime(activeTime)
-	window.timer.addEventListener('click', toggleActive)
-	window.reset.addEventListener('click', resetTimer)
-	window.skip.addEventListener('click', () => {
-		toggleType()
-		renderTime(activeTime)
-	})
+document.addEventListener('DOMContentLoaded', function () {
+	resetTimer();
+	renderTime(activeTime);
+	window.timer.addEventListener('click', toggleActive);
+	window.reset.addEventListener('click', resetTimer);
+	window.skip.addEventListener('click', function () {
+		toggleType();
+		renderTime(activeTime);
+	});
 
-	Array.from(document.getElementsByClassName('timeControl'))
-	     .forEach((x) => x.addEventListener('click', timeIncDec))
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	Array.from(document.getElementsByClassName('timeControl')).forEach(function (x) {
+		return x.addEventListener('click', timeIncDec);
+	});
+});
