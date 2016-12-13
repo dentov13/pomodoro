@@ -33,7 +33,7 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   background-color: tomato;
-  font-family: "Amaranth", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   color: white;
   -webkit-font-smoothing: antialiased;
@@ -94,4 +94,9 @@ div {
 
 .timeControl > * {
   padding: 0.1rem;
+}
+
+#footer {
+  font-size: 1rem;
+  margin-top: 2rem;
 }
